@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./source/jquery-3.5.1.min.js"></script>
+    <link href="./source/tailwind.min.css" rel="stylesheet">
+    <title>库管提交系统</title>
+    
+    <script>
+        function empty() {
+            $('#list').addClass('hidden')
+            toggleOK()
+        }
+        function toggleOK() {
+            $('#okModal').toggleClass('hidden')
+        }
+    </script>
+    <style type="text/css">
+        .checked {
+            background: #68d391;
+            color: #22543d;
+        }
+        .checked:after {
+            content: 'OK';
+        }
+        .unchecked {
+            background: #fc8181;
+            color: #742a2a;
+        }
+        .unchecked:after {
+            content: 'Checked';
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex h-16 bg-yellow-200 items-center px-6">
+        <p class="text-2xl">库存提交系统</p>
+    </div>
+    <div class="m-6 p-2 shadow-lg rounded-lg">
+        <div class="border-b h-12 flex items-center">
+            <div class="flex border-r justify-center  items-center h-12 w-32 flex-none">
+                <p class="px-2 font-bold">商品编号</p>
+            </div>
+
+            <div class="flex-auto border-r p-1 h-12 flex justify-center  items-center">
+                <p class="px-2 font-bold">存量</p>
+            </div>
+
+            <div class="w-32 h-full flex justify-center  items-center">
+                <p class="px-2 font-bold">是否需要补货</p>
+            </div>
+        </div>
+        <div id="list">
+
+        </div>
+    </div>
+    <div class="flex justify-end mt-4 mr-8">
+        <button class="h-8 w-16 bg-green-500 text-white rounded" onclick="empty()">提交</button>
+    </div>
+    <div id="okModal" class="flex items-center justify-center fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-25 hidden" onclick="toggleOK()">
+        <div class="flex items-center justify-center h-64 p-20 bg-white rounded-lg" style="height: 10rem; width: 20rem;">
+            <img src="./source/ok.png">
+            <p class="flex-none mx-10 font-lg">提交成功</p>
+        </div>
+    </div>
+
+    <script>
+        let numArr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+        let $lst = $("#list");
+        numArr.forEach((v, i) => {
+            $lst.append(`<div class="border-b h-12 flex items-center">
+                <div class="flex border-r border-b items-center h-12 w-32 bg-gray-100 flex-none justify-center">
+                    <p class="px-2">${100000 + v}</p>
+                </div>
+
+                <div class="flex-auto border-r p-1 h-12 flex justify-center  items-center">
+                    <input class="w-full h-full px-2 text-center" placeholder="输入存量">
+                </div>
+
+                <div class="w-32 h-full flex items-center justify-center">
+                    <label>
+                        <input class="w-8 h-6" type="checkbox" />
+                    </label>
+                </div>
+            </div>`)
+        })
+    </script>
+
+</body>
+</html>
